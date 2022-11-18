@@ -1,15 +1,12 @@
-
 #include <iostream>
 #include <random>
 #include <ctime>
 using namespace std;
 
-// Make it a slots game, 3 random ascii images are shown, if 3 of the same, grant points and ask user if they want to continue
-
 int point(string result, int bet)
 {
 	char number = result[0];
-	int point;
+	int point = 0;
 	if (number == result[1] && number == result[2])
 		point = ((1.5)* bet);
 	return point;
@@ -26,23 +23,33 @@ string symbols()
 
 int main()
 {
-	int bet, cash_out = 0;
+	int bet_total =0;
 	char user_continue;
 	cout<<"\nWelcome to the Casino \n \nEnter your bet and play slots!";
 	while (true)
 	{
+		int cash_out = 0, bet =0;
 		srand(time(NULL));
 		cout <<"\nEnter your bet: "; 
 		cin>>bet;
 		string result = symbols();
 		cout << "\n" <<result;
-		cash_out += point(result, bet);
-		cout<< "\nYour winnings: " << cash_out;
+		cash_out = point(result, bet);
+		if (cash_out == 0)
+		{
+			bet_total -= bet;
+		}
+		else
+		{
+			bet_total += cash_out;	
+		}
+			
+		cout<< "\nYour total winnings: " << bet_total;
 		cout<<"\nDo you want to continue? (Enter Y or N): ";
 		cin>> user_continue;
 		if (user_continue == 'N' || user_continue == 'n')
+		{
 			break;
+		}
 	}
-	return 0;
-	
 }	
