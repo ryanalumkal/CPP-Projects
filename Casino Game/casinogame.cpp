@@ -24,7 +24,6 @@ string symbols()
 int main()
 {
 	int bet_total =0;
-	char user_continue;
 	cout<<"\nWelcome to the Casino \n \nEnter your bet and play slots!";
 	while (true)
 	{
@@ -46,10 +45,25 @@ int main()
 			
 		cout<< "\nYour total winnings: " << bet_total;
 		cout<<"\nDo you want to continue? (Enter Y or N): ";
-		cin>> user_continue;
-		if (user_continue == 'N' || user_continue == 'n')
+		try
 		{
-			break;
+			char user_continue;
+			cin>> user_continue;
+			if (user_continue == 'N' || user_continue == 'n'|| user_continue == 'Y' || user_continue == 'y')
+			{
+				if (user_continue == 'N' || user_continue == 'n')
+				{
+					cout<<"Thank you for gambling!";
+					break;
+				}
+			}else{
+				throw "incorrect value";
+			}
+		}
+		catch(string exception)
+		{
+			cout<<"The value is incorrect";
+			cout<<"Error: "<< exception;
 		}
 	}
-}	
+}	;
