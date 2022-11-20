@@ -60,10 +60,9 @@ int main()
 				throw "incorrect value";
 			}
 		}
-		catch(string exception)
+		catch(...)
 		{
 			cout<<"The value is incorrect";
-			cout<<"Error: "<< exception;
 		}
 	}
-}	;
+}	
